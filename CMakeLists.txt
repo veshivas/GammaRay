@@ -610,6 +610,7 @@ write_basic_package_version_file(
   COMPATIBILITY SameMajorVersion
 )
 
+if(NOT GAMMARAY_PROBE_ONLY_BUILD)
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/GammaRayConfig.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/GammaRayConfigVersion.cmake
@@ -622,6 +623,7 @@ install(
   FILE GammaRayTarget.cmake
 #     NAMESPACE GammaRay::
 )
+endif()
 
 #CPACK: General Settings
 set(CPACK_GENERATOR "TBZ2")
