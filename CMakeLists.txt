@@ -143,6 +143,7 @@ option(
 )
 
 option(GAMMARAY_ENABLE_GPL_ONLY_FEATURES "Enable features only available under GPL license." OFF)
+option(GAMMARAY_INSTALL_QT_LAYOUT "Install into Qt directory layout." OFF)
 
 
 #
