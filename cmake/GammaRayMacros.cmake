@@ -12,7 +12,7 @@ macro(gammaray_add_plugin _target_name _desktop_file)
   if(NOT PROBE_PLUGIN_INSTALL_DIR) # HACK for external plugins that don't set PLUGIN_INSTALL_DIR
     set(PROBE_PLUGIN_INSTALL_DIR ${GAMMARAY_PROBE_PLUGIN_INSTALL_DIR})
   endif()
-  set(_build_target_dir "${PROJECT_BINARY_DIR}/${PROBE_PLUGIN_INSTALL_DIR}")
+  set(_build_target_dir "${GAMMARAY_OUTPUT_PREFIX}/${PROBE_PLUGIN_INSTALL_DIR}")
 
   add_library(${_target_name} MODULE ${ARGN})
   set_target_properties(${_target_name} PROPERTIES
