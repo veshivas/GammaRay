@@ -41,6 +41,7 @@ QT_END_NAMESPACE
 namespace GammaRay {
 class RemoteViewWidget;
 class WidgetInspectorInterface;
+class Widget3DView;
 
 namespace Ui {
 class WidgetInspectorWidget;
@@ -53,7 +54,9 @@ public:
     explicit WidgetInspectorWidget(QWidget *parent = 0);
     ~WidgetInspectorWidget();
 
+
 private slots:
+    void onTabChanged(int index);
     void widgetSelected(const QItemSelection &selection);
     void widgetTreeContextMenu(QPoint pos);
 
@@ -69,6 +72,7 @@ private:
     UIStateManager m_stateManager;
     WidgetInspectorInterface *m_inspector;
     RemoteViewWidget *m_remoteView;
+    Widget3DView *m_3dView;
 };
 
 class WidgetInspectorUiFactory : public QObject, public StandardToolUiFactory<WidgetInspectorWidget>

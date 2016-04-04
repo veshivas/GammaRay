@@ -33,6 +33,7 @@
 #include "widgetclientmodel.h"
 #include "ui_widgetinspectorwidget.h"
 #include "waextension/widgetattributetab.h"
+#include "widget3dview.h"
 
 #include "common/objectbroker.h"
 #include "common/objectmodel.h"
@@ -49,6 +50,7 @@
 #include <QMenu>
 #include <QtPlugin>
 #include <QToolBar>
+#include <QLayout>
 
 using namespace GammaRay;
 
@@ -63,6 +65,7 @@ WidgetInspectorWidget::WidgetInspectorWidget(QWidget *parent)
     , m_stateManager(this)
     , m_inspector(0)
     , m_remoteView(new RemoteViewWidget(this))
+    , m_3dView(Q_NULLPTR)
 {
     ObjectBroker::registerClientObjectFactoryCallback<WidgetInspectorInterface *>(
         createWidgetInspectorClient);
@@ -130,10 +133,20 @@ WidgetInspectorWidget::WidgetInspectorWidget(QWidget *parent)
     m_stateManager.setDefaultSizes(ui->previewSplitter, UISizeVector() << "50%" << "50%");
 
     connect(ui->widgetPropertyWidget, SIGNAL(tabsUpdated()), &m_stateManager, SLOT(reset()));
+
+    connect(ui->tabWidget, SIGNAL(currentChanged(int)), this, SLOT(onTabChanged(int)));
 }
 
 WidgetInspectorWidget::~WidgetInspectorWidget()
 {
+}
+
+void WidgetInspectorWidget::onTabChanged(int index)
+{
+    if (index == 1 && m_3dView == Q_NULLPTR) {
+        m_3dView = new Widget3DView(this);
+        ui->widgetExplosionTab->layout()->addWidget(m_3dView);
+    }
 }
 
 void WidgetInspectorWidget::updateActions()
