@@ -42,6 +42,8 @@ set(gammaray_ui_srcs
   propertyeditor/propertymatrixmodel.cpp
   propertyeditor/propertytexteditor.cpp
 
+  codeeditor/codeeditor.cpp
+
   tools/localeinspector/localeinspectorwidget.cpp
   tools/messagehandler/messagedisplaymodel.cpp
   tools/messagehandler/messagehandlerwidget.cpp
@@ -125,6 +127,9 @@ target_link_libraries(gammaray_ui
   LINK_PUBLIC ${QT_QTCORE_LIBRARIES} ${QT_QTGUI_LIBRARIES} gammaray_common
   LINK_PRIVATE gammaray_common_internal gammaray_kitemmodels
 )
+if(TARGET KF5::SyntaxHighlighting)
+  target_link_libraries(gammaray_ui LINK_PRIVATE KF5::SyntaxHighlighting)
+endif()
 
 set(gammaray_ui_internal_srcs
   sidepane.cpp
