@@ -43,6 +43,7 @@ set(gammaray_ui_srcs
   propertyeditor/propertytexteditor.cpp
 
   codeeditor/codeeditor.cpp
+  codeeditor/codeeditorsidebar.cpp
 
   tools/localeinspector/localeinspectorwidget.cpp
   tools/messagehandler/messagedisplaymodel.cpp
